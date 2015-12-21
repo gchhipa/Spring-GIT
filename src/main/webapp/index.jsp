@@ -2,38 +2,29 @@
 <html>
 <head>
 <script src="<c:url value="/resources/lib/jquery.min.js" />"></script>
-<script src="<c:url value="/resources/lib/underscore.js" />"></script>
-<script src="<c:url value="/resources/lib/backbone.js" />"></script>
+<%-- <script src="<c:url value="/resources/lib/angular.min.js" />"></script> --%>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script src="<c:url value="/resources/lib/script.js" />"></script>
 </head>
 <body>
 
-	<div id="container"></div>
-	<script>
-		var Employee = Backbone.Model.extend({
-			defaults : {
-				empno : null,
-				empname : "rohit"
-			},
-			initialize : function() {
-				console.log("Employee Initialized");
-			}
-		});
+	<div ng-app="app">
+		<div ng-controller="EmployeeCtrl">
+			<table>
 
-		var Employees = Backbone.Collection.extend({
-			model : Employee,
-			urlRoot : "http://localhost:8086/Backbone-Spring/employee/1",
+				</tr>
+				<tr ng-repeat="employee in employees">
+					<td>{{employee.empno}}</td>
+					<td>{{employee.empname}}</td>
+				</tr>
+			</table>
+		</div>
 
-		});
+	</div>
 
-		var EmployeeView = Backbone.View.extend({
-			render : function() {
-				this.$el.html(this.model.get('empname'));
-				return this;
-			}
-		});
-		
-		
-	</script>
 
 </body>
 </html>
